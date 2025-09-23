@@ -1,8 +1,11 @@
 const express = require("express");
-const Sturoute = require("./routes/studentRoute");
+const studentRoute = require("./routes/studentRoute");
+const employeeRoute = require("./routes/empolyeeRoute");
 const app = express();
 
-app.use("/student",Sturoute);
+app.use("/students",studentRoute);
+
+app.use("/employee",employeeRoute);
 
 app.listen(9000,()=>{
     console.log("server is listening on port 9000");
