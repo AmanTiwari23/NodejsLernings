@@ -1,21 +1,21 @@
 const homePage = (req, res) => {
-  res.send("this is home page");
+   res.render("home");
 };
 
 const aboutPage = (req, res) => {
-  res.send("this is about page");
+  res.render("about");
 };
 
 const service = (req, res) => {
-  res.send("this is servic page");
+  res.render("services");
 };
 
 const coursePage = (req, res) => {
-  res.send("this is course page");
+  res.render("course");
 };
 
 const contactPage = (req, res) => {
-  res.send("this is contact page");
+   res.render("contact");
 };
 
 module.exports = { homePage, contactPage, service, coursePage, aboutPage };

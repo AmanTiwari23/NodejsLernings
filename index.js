@@ -2,7 +2,8 @@ const express = require("express");
 const studentRoute = require("./routes/studentRoute");
 const employeeRoute = require("./routes/empolyeeRoute");
 const app = express();
-
+  
+app.set("view engine", "ejs")
 app.use("/students",studentRoute);
 
 app.use("/employee",employeeRoute);
