@@ -5,7 +5,6 @@ const stuSchema = new mongoose.Schema({
     name:String,
     city:String,
     fees:Number
-
 });
 
 module.exports = mongoose.model("Student",stuSchema);
