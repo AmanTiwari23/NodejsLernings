@@ -19,7 +19,16 @@ const display = async (req,res)=>{
    res.send(mydata);
 }
 
+
+const search = async(req,res)=>{
+    const {rollno} = req.body;
+    const mydata = await Student.find({rollno:rollno});
+    res.send(mydata);
+    console.log(mydata);
+}
+
 module.exports = {
     dataSave,
-    display
+    display,
+    search
 }
