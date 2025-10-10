@@ -27,8 +27,22 @@ const search = async(req,res)=>{
     console.log(mydata);
 }
 
+const updateDisplay = async(req,res)=>{
+    const data = await Student.find();
+    res.send(data);
+    console.log(data);
+}
+
+const updateDelete = async(req,res)=>{
+    const {id} = req.query;
+    const data = await Student.findByIdAndDelete(id);
+    res.send({msg:"Data deleted sucessfuly"});
+}
+
 module.exports = {
     dataSave,
     display,
-    search
+    search,
+    updateDisplay,
+    updateDelete
 }
