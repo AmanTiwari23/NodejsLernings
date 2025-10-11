@@ -38,11 +38,32 @@ const updateDelete = async(req,res)=>{
     const data = await Student.findByIdAndDelete(id);
     res.send({msg:"Data deleted sucessfuly"});
 }
+const editdatadisplay = async(req,res)=>{
+        const {id} = req.params;
+
+        const data = await Student.findById(id);
+        res.send(data);
+        console.log(data);
+
+}
+
+const editdata = async(req,res)=>{
+    const {_id,rollno,name,city,fees} = req.body;
+    const data = await Student.findByIdAndUpdate(_id,{
+        rollno:rollno,
+        name:name,
+        city:city,
+        fees:fees
+    });
+    res.send({msg:"Data save successfuly"});
+}
 
 module.exports = {
     dataSave,
     display,
     search,
     updateDisplay,
-    updateDelete
+    updateDelete,
+    editdatadisplay,
+    editdata
 }
