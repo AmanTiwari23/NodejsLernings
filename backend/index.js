@@ -15,7 +15,7 @@ app.use("/students",studentRoute);
 
 
 
-mongoose.connect("mongodb://localhost:27017/Amandb").then(()=>{
+mongoose.connect("mongodb+srv://tiwari95aman_db_user:lYR3PWDLmCU6sb1L@cluster0.cxpayrm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
     console.log("DB connected Succesfully");
 })
 
