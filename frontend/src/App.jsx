@@ -6,6 +6,7 @@ import Display from "./Display";
 import Search from "./Search";
 import Update from "./Update";
 import MyEdit from "./MyEdit";
+import Home from "./Home";
 
 const App = () => {
   return (
@@ -13,6 +14,8 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
+          <Route path="home" element={<Home/>} />
+
             <Route path="insert" element={<Insert/>} />
              <Route path="display" element={<Display/>} />
               <Route path="search" element={<Search/>} />
