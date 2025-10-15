@@ -15,7 +15,7 @@ const Insert = () => {
 
   const handleSubmit = async()=>{
 
-    const api = "http://localhost:8000/students/insert";
+    const api = `${import.meta.env.VITE_BASE_URL}/students/insert`;
     const response = await axios.post(api,input);
     console.log(response);
     alert(response.data);

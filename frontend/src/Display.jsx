@@ -5,7 +5,7 @@ const Display = () => {
   const [mydata, setMyData] = useState([]);
 
   const loaddata = async () => {
-    const api = "http://localhost:8000/students/display";
+    const api = `${import.meta.env.VITE_BASE_URL}/students/display`;
     const response = await axios.get(api);
     console.log(response);
     setMyData(response.data);

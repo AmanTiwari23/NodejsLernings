@@ -7,7 +7,7 @@ const MyEdit = () => {
   const { id } = useParams();
 
   const loaddata = async () => {
-    const api = `http://localhost:8000/students/editdatadisplay/${id}`;
+    const api = `${import.meta.env.VITE_BASE_URL}/students/editdatadisplay/${id}`;
     const response = await axios.get(api);
     setMydata(response.data);
     console.log(response.data);
@@ -40,28 +40,28 @@ const MyEdit = () => {
       <input
         type="text"
         name="rollno"
-        value={myData.rollno}
+        value={myData.rollno || ""}
         onChange={handleChange}
       /> <br />
       Edit Name:{" "}
       <input
         type="text"
         name="name"
-        value={myData.name}
+        value={myData.name || ""}
         onChange={handleChange}
       />  <br />
       Edit city:{" "}
       <input
         type="text"
         name="city"
-        value={myData.city}
+        value={myData.city || ""}
         onChange={handleChange}
       />  <br />
       Edit fees:{" "}
       <input
         type="text"
         name="fees"
-        value={myData.fees}
+        value={myData.fees || ""}
         onChange={handleChange}
       /> <br />
 

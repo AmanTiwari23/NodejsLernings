@@ -8,11 +8,11 @@ const Update = () => {
   const navigate = useNavigate()
 
   const loaddata = async () => {
-    let api = "http://localhost:8000/students/updateData";
+    let api = `${import.meta.env.VITE_BASE_URL}/students/updateData`;
     const response = await axios.get(api);
 
     setMydata(response.data);
-  };
+  }; 
 
   const mydel = async (id) => {
     const api = `http://localhost:8000/students/updatedelete?id=${id}`;

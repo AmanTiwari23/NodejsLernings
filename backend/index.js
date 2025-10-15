@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 const studentRoute = require("./routes/studentRoute")
+require('dotenv').config();
 
 
 app.use(cors());
@@ -15,12 +16,13 @@ app.use("/students",studentRoute);
 
 
 
-mongoose.connect("mongodb+srv://tiwari95aman_db_user:lYR3PWDLmCU6sb1L@cluster0.cxpayrm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
+mongoose.connect(process.env.MONGODB_URL).then(()=>{
     console.log("DB connected Succesfully");
 })
 
+const port = process.env.PORT || 8000
 
-app.listen(8000,()=>{
+app.listen(port,()=>{
     console.log("server run on 8000! port")
 });
 

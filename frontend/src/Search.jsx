@@ -6,7 +6,7 @@ const Search = () => {
     const [mydata,setMydata] = useState([]);
 
     const handleSubmit = async()=>{
-        const api = "http://localhost:8000/students/search";
+        const api = `${import.meta.env.VITE_BASE_URL}/students/search`;
         const response = await axios.post(api,{rollno:input});
         console.log(response);
         setMydata(response.data);
