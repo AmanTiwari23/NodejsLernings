@@ -3,22 +3,41 @@ import React from 'react'
 
 const Home = () => {
     const handleSubmit = async()=>{
-        const api = `${import.meta.env.VITE_BASE_URL}/home`;
+      try{
+
+         const api = `${import.meta.env.VITE_BASE_URL}/home`;
         const response = await axios.get(api);
         console.log(response.data);
+      }catch(err){
+        alert(err.response.data);
+      }
+       
     }
 
       const handleserviceSubmit = async()=>{
-        const api = `${import.meta.env.VITE_BASE_URL}/service`;
+        try{
+
+           const api = `${import.meta.env.VITE_BASE_URL}/service`;
         const response = await axios.get(api);
         console.log(response.data);
+        }catch(err){
+          alert(err.response.data);
+        }
+       
     }
 
       const handleaboutSubmit = async()=>{
-        const api = `${import.meta.env.VITE_BASE_URL}/about`;
+        try{
+
+          const api = `${import.meta.env.VITE_BASE_URL}/about`;
         const response = await axios.get(api);
         console.log(response.data);
+        }catch(err){
+          alert(err.response.data);
+        }
+        
     }
+
   return (
     <div>
       welcome to home page

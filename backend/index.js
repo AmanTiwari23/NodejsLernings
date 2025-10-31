@@ -19,8 +19,13 @@ app.use((req,res,next)=>{
 });
 
 app.get("/home",(req,res)=>{
-    console.log("home page")
-    res.send("welcome to home page")
+    let name = false;
+    if(name){
+        res.status(200).send("home page no error");
+    }else{
+        res.status(401).send("Home page error occurs");
+    }
+
 });
 app.get("/about",(req,res)=>{
      console.log("about page")
