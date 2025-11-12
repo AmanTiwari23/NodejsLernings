@@ -11,12 +11,12 @@ app.use(cors());
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(bodyparser.json());
 
-// app.use("/students",studentRoute);
+app.use("/students",studentRoute);
 
-app.use((req,res,next)=>{
-  console.log("first level middleware");
-  next();
-});
+// app.use((req,res,next)=>{
+//   console.log("first level middleware");
+//   next();
+// });
 
 app.get("/home",(req,res,next)=>{
    

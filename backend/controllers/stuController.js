@@ -1,22 +1,27 @@
 const Student = require("../models/studentModel")
+const User = require("../models/userModle");
+const Profile = require("../models/profileModle");
+
 
 const   dataSave = async(req,res)=>{
-    const {rollno,name,city,fees} = req.body;
-    const student = await Student.create({
-        rollno:rollno,
-        name:name,
-        city:city,
-        fees:fees
+    const {uname,lname,fname,email} = req.body;
+    const user = await User.create({
+        username:uname,
+        email:email
     });
 
-    res.send("Data Save successfuly ! ")
+    const profile = await Profile.create({
+        firstName:fname,
+        lastName:lname,
+        userid:user._id
+    })
+
+    res.send("user created with profile ! ");
 
 }
 
 const display = async (req,res)=>{
-   const mydata = await Student.find();
-   console.log("okkk");
-   res.send(mydata);
+   const profile = await Profile.find().populate("userid");
 }
 
 

@@ -26,10 +26,10 @@ const Insert = () => {
   return (
     <div>
        <h1>Insert student Data</h1> <br /> 
-       Enter Roll no : <input  type='text' placeholder='enter your roll no' name="rollno" onChange={handleInput} /> <br />
-       Enter Name : <input  type='text' placeholder='enter your name' name="name" onChange={handleInput} /> <br />
-       Enter City : <input  type='text' placeholder='enter your rc' name="city" onChange={handleInput} /> <br />
-       Enter Fees : <input  type='text' placeholder='enter your roll no' name="fees" onChange={handleInput} /> <br />
+       Enter userName : <input  type='text' placeholder='enter your roll no' name="uname" onChange={handleInput} /> <br />
+       Enter Email : <input  type='text' placeholder='enter your name' name="email" onChange={handleInput} /> <br />
+       Enter FirstName : <input  type='text' placeholder='enter your rc' name="fname" onChange={handleInput} /> <br />
+       Enter LastName : <input  type='text' placeholder='enter your roll no' name="lname" onChange={handleInput} /> <br />
 
        <button onClick={handleSubmit}>Submit</button>
 
