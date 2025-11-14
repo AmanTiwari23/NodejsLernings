@@ -15,7 +15,7 @@ const Insert = () => {
 
   const handleSubmit = async()=>{
 
-    const api = `${import.meta.env.VITE_BASE_URL}/students/insert`;
+    const api = `${import.meta.env.VITE_BASE_URL}/students/save`;
     const response = await axios.post(api,input);
     console.log(response);
     alert(response.data);
@@ -25,12 +25,15 @@ const Insert = () => {
 
   return (
     <div>
-       <h1>Insert student Data</h1> <br /> 
-       Enter userName : <input  type='text' placeholder='enter your roll no' name="uname" onChange={handleInput} /> <br />
-       Enter Email : <input  type='text' placeholder='enter your name' name="email" onChange={handleInput} /> <br />
-       Enter FirstName : <input  type='text' placeholder='enter your rc' name="fname" onChange={handleInput} /> <br />
-       Enter LastName : <input  type='text' placeholder='enter your roll no' name="lname" onChange={handleInput} /> <br />
-
+       <h1>Insert author Data</h1> <br /> 
+        Enter authorname : <input type="text" name="name" onChange={handleInput} />
+         <br/>
+          Enter email : <input type="email" name="email" onChange={handleInput} />
+         <br/>
+          Enter Booktitle : <input type="text" name="booktitle" onChange={handleInput} />
+         <br/>
+          Enter Price : <input type="text" name="price" onChange={handleInput} />
+        
        <button onClick={handleSubmit}>Submit</button>
 
 

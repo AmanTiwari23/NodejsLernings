@@ -1,34 +1,53 @@
 const Student = require("../models/studentModel")
 const User = require("../models/userModle");
 const Profile = require("../models/profileModle");
-
+const AuthorModel = require("../models/authorModel");
+const BookModel = require("../models/bookModel");
 
 const   dataSave = async(req,res)=>{
-    const {uname,lname,fname,email} = req.body;
-    const user = await User.create({
-        username:uname,
-        email:email
-    });
-
-    const profile = await Profile.create({
-        firstName:fname,
-        lastName:lname,
-        userid:user._id
+    
+    const { name, email, booktitle, price } = req.body;
+        const author = await AuthorModel.create({
+        authorname: name,
+        email: email
     })
 
-    res.send("user created with profile ! ");
+    const book = await BookModel.create({
+        bookname: booktitle,
+        price: price,
+        authorid: author._id
+    })
+   
+    
+    await AuthorModel.findByIdAndUpdate(author._id, {$push:{booksid:book._id}} ) 
+
+    res.send("Author Created with Books");
 
 }
-const display = async (req, res, next) => {
-  try {
-    const profile = await Profile.find().populate("userid");
-    console.log(profile);
-    res.status(200).send(profile);
-  } catch (error) {
-    console.error("Display Error:", error.message);
-    res.status(500).send("Something went wrong");
-  }
-};
+
+
+const dataDisplay = async (req, res) => {
+    const author = await  AuthorModel.find().populate("booksid");
+    res.send(author);
+}
+
+const bookdataSave=async(req,res)=>{
+    const { authid, bookname, price }=req.body;
+
+    const book = await BookModel.create({
+          bookname:bookname ,
+          price:price
+    })
+
+    await AuthorModel.findByIdAndUpdate(authid, {$push:{booksid:book._id}})
+     res.send("Book save!!!");
+}
+
+const dataDisplay1 = async (req, res) => {
+    const book = await  BookModel.find().populate("authorid");
+    res.send(book);
+}
+
 
 const search = async(req,res)=>{
     const {rollno} = req.body;
@@ -70,7 +89,9 @@ const editdata = async(req,res)=>{
 
 module.exports = {
     dataSave,
-    display,
+    bookdataSave,
+    dataDisplay1,
+    dataDisplay,
     search,
     updateDisplay,
     updateDelete,
