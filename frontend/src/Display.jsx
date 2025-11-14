@@ -16,15 +16,17 @@ const Display = () => {
   }, []);
 
   const ans = mydata.map((key) => {
+   
     return (
-      <>
-        <tr key={key.id}>
-          <td>{key.rollno}</td>
-          <td>{key.name}</td>
-          <td>{key.city}</td>
-          <td>{key.fees}</td>
+
+      
+        <tr key={key._id}>
+          <td>{key.firstName}</td>
+          <td>{key.lastName}</td>
+          <td>{key.userid.username}</td>
+          <td>{key.userid.email}</td>
         </tr>
-      </>
+      
     );
   });
 
@@ -33,11 +35,15 @@ const Display = () => {
       <h1>Dispaly data</h1>
       <div style={{display:"flex", justifyContent:"center" ,width:"100vw"}}>
         <table border="2px solid" style={{width:"50vw"}}>
-          <th>rollno</th>
-          <th>name</th>
-          <th>city</th>
-          <th>fees</th>
-
+         <thead>
+          <tr>
+            <td>rollno</td>
+          <td>name</td>
+          <td>city</td>
+          <td>fees</td>
+          </tr>
+          
+</thead> 
           <tbody>{ans}</tbody>
         </table>
       </div>

@@ -19,11 +19,16 @@ const   dataSave = async(req,res)=>{
     res.send("user created with profile ! ");
 
 }
-
-const display = async (req,res)=>{
-   const profile = await Profile.find().populate("userid");
-}
-
+const display = async (req, res, next) => {
+  try {
+    const profile = await Profile.find().populate("userid");
+    console.log(profile);
+    res.status(200).send(profile);
+  } catch (error) {
+    console.error("Display Error:", error.message);
+    res.status(500).send("Something went wrong");
+  }
+};
 
 const search = async(req,res)=>{
     const {rollno} = req.body;
