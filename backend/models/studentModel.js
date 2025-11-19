@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const stuSchema = new mongoose.Schema({
-    rollno:Number,
+  
     name:String,
-    city:String,
-    fees:Number
+   email:String,
+   password:String
 });
 
 module.exports = mongoose.model("Student",stuSchema);

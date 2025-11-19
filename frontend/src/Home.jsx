@@ -41,10 +41,7 @@ const Home = () => {
   return (
     <div>
       welcome to home page
-      <button onClick={handleSubmit}>submit</button>
-       <button onClick={handleserviceSubmit}>service</button>
-        <button onClick={handleaboutSubmit}>about</button>
-
+      
     </div>
   )
 }
