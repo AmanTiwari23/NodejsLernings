@@ -5,6 +5,7 @@ const studentcontroller = require("../controllers/stuController")
 
 
 router.post("/registration",studentcontroller.stuRegistration);
+router.post("/login",studentcontroller.stuLogin);
 
 
 module.exports = router;
