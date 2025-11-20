@@ -17,7 +17,7 @@ const stuRegistration = async (req,res)=>{
 }
 
 const stuLogin = async (req,res)=>{
-    const {email,password} = req.body;
+    // const {email,password} = req.body;
     console.log(req.body);
 
     const user = await Student.findOne({email:email});
@@ -32,7 +32,20 @@ const stuLogin = async (req,res)=>{
     res.status(200).send({token:token,msg:"user successfully login"});
 }
 
+const userAuth = async (req,res)=>{
+    const token = req.header("auth-token");
+    const decode = await jwt.verify(token,"aman9589");
+    console.log(decode.id);
+
+    const user = await Student.findById(decode.id).select("-password");
+    console.log(user);
+    res.send(user);
+    
+
+}
+
 module.exports = {
    stuRegistration,
-   stuLogin
+   stuLogin,
+   userAuth
 }
