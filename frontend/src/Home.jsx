@@ -48,7 +48,7 @@ const Home = () => {
      <h1>Upload file using Multer</h1>
      upload File: <input type='file' onChange={handleImage}/>
      <button onClick={handleUpload}>Upload</button>
-      
+        <h1> Welcome To Multiple File Uploading</h1>
     </div>
   )
 }
