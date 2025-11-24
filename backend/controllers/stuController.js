@@ -2,7 +2,8 @@ const Student = require("../models/studentModel")
 const bcrypt =  require("bcrypt")
 const jwt = require("jsonwebtoken");
 const multer = require("multer")
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const CloudinaryStorage = require("multer-storage-cloudinary");
+;
 const cloudinary = require("../cloudinary");
 
 const stuRegistration = async (req,res)=>{
@@ -47,12 +48,12 @@ const userAuth = async (req,res)=>{
 }
 
 const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-        folder: 'Student_images', // folder name Cloudinary account
-        format: async (req, file) => 'jpg', // supports promises as well
-        public_id: (req, file) => Date.now() + '-' + file.originalname,
-    },
+  cloudinary: cloudinary,
+  params: {
+    folder: "Student_images",
+    format: async (req, file) => "jpg",
+    public_id: (req, file) => Date.now() + "-" + file.originalname,
+  },
 });
 
 const upload = multer({ storage: storage }).array('images', 10); //image size
