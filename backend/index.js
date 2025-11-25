@@ -1,48 +1,61 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const mongoose = require("mongoose");
-const bodyparser = require("body-parser");
-const studentRoute = require("./routes/studentRoute")
-const multer = require("multer")
-require('dotenv').config();
+// const express = require("express");
+// const app = express();
+// const cors = require("cors");
+// const mongoose = require("mongoose");
+// const bodyparser = require("body-parser");
+// const studentRoute = require("./routes/studentRoute")
+// const multer = require("multer")
+// require('dotenv').config();
 
+// app.use(cors());
+// app.use(bodyparser.urlencoded({extended:true}));
+// app.use(bodyparser.json());
 
-app.use(cors());
-app.use(bodyparser.urlencoded({extended:true}));
-app.use(bodyparser.json());
+// app.use("/students",studentRoute);
 
-app.use("/students",studentRoute);
+// mongoose.connect(process.env.MONGODB_URL).then(()=>{
+//     console.log("DB connected Succesfully");
+// })
 
+// const storage = multer.diskStorage({
+//     destination:(req,file,cb)=>{
+//         cb(null,'uploads/');
+//     },
 
+//     filename:(req,file,cb)=>{
+//         cb(null,`${Date.now()}-${file.originalname}`);
+//     }
+// });
 
+// const upload = multer({storage:storage});
 
+// app.post("/upload",upload.single("myfile"),(req,res)=>{
+//     console.log(req.file.filename);
+//     res.send("File Uploaded");
+// })
 
-mongoose.connect(process.env.MONGODB_URL).then(()=>{
-    console.log("DB connected Succesfully");
-})
+// const port = process.env.PORT || 8000
 
-const storage = multer.diskStorage({
-    destination:(req,file,cb)=>{
-        cb(null,'uploads/');
-    },
+// app.listen(port,()=>{
+//     console.log("server run on 8000! port")
+// });
 
-    filename:(req,file,cb)=>{
-        cb(null,`${Date.now()}-${file.originalname}`);
-    }
-});
-
-const upload = multer({storage:storage});
-
-app.post("/upload",upload.single("myfile"),(req,res)=>{
-    console.log(req.file.filename);
-    res.send("File Uploaded");
-})
-
-
-const port = process.env.PORT || 8000
-
-app.listen(port,()=>{
-    console.log("server run on 8000! port")
-});
-
+const http = require("http");
+const cluster = require("cluster");
+const os = require("os");
+if(cluster.isMaster) {
+  console.log("master is processing");
+  console.log(os.cpus().length);
+  cluster.fork();
+  cluster.fork();
+  cluster.fork();
+} else {
+  http.createServer((req, res) => {
+      setTimeout(() => {
+        res.write("<h1>Request handles successfuly</h1>");
+        res.end();
+      }, 5000);
+    })
+    .listen(3000);
+  console.log("serer is runing on 3000");
+}
