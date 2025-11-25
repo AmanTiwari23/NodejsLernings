@@ -11,14 +11,17 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin:"http://localhost:3000",
+    origin:"http://localhost:5173",
+    methods: "GET,POST",
     credentials:true,
 }));
 
-mongoose.connect("mongodb://127.0.0.1:27017/cookieAuth");
+mongoose.connect("mongodb://127.0.0.1:27017/cookieAuth").then(
+    console.log("db connected ")
+);
 
 const userSchema = new mongoose.Schema({
-    user:String,
+    username:String,
     password:String
 });
 
@@ -26,18 +29,25 @@ const User = mongoose.model("User",userSchema);
 
 app.post("/register",async(req,res)=>{
     const {username,password} =  req.body;
+    console.log(req.body)
     const hashedPassword = await bcrypt.hash(password,10);
 
     await User.create({username,password:hashedPassword});
-    res.jason({message:"User registratered successfully"});
+    res.json({message:"User registratered successfully"});
 
 });
 
 app.post("/login",async (req,res)=>{
-   const {username,password} = req.body;
+    try{
+        const {username,password} = req.body;
    const user = await User.findOne({username});
 
    if(!user) return res.status(400).json({message:"invalid credentials"});
+
+   const ispasswordvalid = bcrypt.compare(password,user.password);
+   if(!ispasswordvalid){
+    res.status(400).json({msg:"Invalid password"});
+   }
 
    res.cookie("authToken",user._id.toString(),{
     httpOnly:true,
@@ -45,6 +55,11 @@ app.post("/login",async (req,res)=>{
    });
 
    res.json({message:"Login successful"});
+
+    }catch(err){
+    res.status(500).send(err.message);
+    }
+   
 
 });
 
@@ -58,7 +73,7 @@ app.get("/profile",async(req,res)=>{
 
 app.post("/logout",(req,res)=>{
     res.clearCookie("authToken");
-    res.jason({message:"Logged out successfully"});
+    res.json({message:"Logged out successfully"});
 });
 
-app.listen()
+app.listen(5000,()=> console.log("Server is listening on port 5000"));
